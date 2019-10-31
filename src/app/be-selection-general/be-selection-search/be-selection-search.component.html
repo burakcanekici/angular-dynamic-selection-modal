@@ -1,0 +1,35 @@
+<form id="mForm" [formGroup]="selectionFormGroup" (ngSubmit)="search()">
+	<div class="row">
+		<mat-grid-list cols="4" rowHeight="4:1">
+			<mat-grid-tile *ngFor="let field of selectionFormGroupObjWithoutHidden">
+				<div *ngIf="!field.hidden">
+					<div [ngSwitch]="field.type">
+						<mat-form-field *ngSwitchCase="'input'">
+							<input class="form-control" matInput [formControlName]="field.field"
+                            [placeholder]="field.headerName" [formGroup]="selectionFormGroup" autocomplete="off"
+                            ng-required="field.required" />
+							<mat-error *ngIf="selectionFormGroup.hasError('required')">Fill it!</mat-error>
+						</mat-form-field>
+						<mat-form-field *ngSwitchCase="'select'">
+							<mat-label>{{field.headerName}}</mat-label>
+							<mat-select class="form-control" matInput [formControlName]="field.field"
+								[formGroup]="selectionFormGroup" autocomplete="off" ng-required="field.required"
+								[(ngModel)]=field.value>
+								<mat-option value="">Choose</mat-option>
+								<mat-option *ngFor="let i of field.elements" [value]="i.id">
+									{{i.text}}
+								</mat-option>
+							</mat-select>
+							<mat-error *ngIf="selectionFormGroup.hasError('required')">Select it!</mat-error>
+						</mat-form-field>
+					</div>
+				</div>
+			</mat-grid-tile>
+		</mat-grid-list>
+	</div>
+	<div align="end">
+		<button mat-raised-button color="primary" cdkFocusInitial type="submit" [disabled]="selectionFormGroup.invalid">
+            Ara
+        </button>
+	</div>
+</form>

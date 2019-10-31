@@ -1,0 +1,28 @@
+
+<h1>Dynamic Selection Modal Example</h1>
+<mat-card style="margin: 25px;">
+	<div>
+		<form [formGroup]="mainForm">
+      <be-selection-form [parentForm]='dynamicFormObj' [placeHolderText]="'Athlete'"
+					[modalHeaderText]="'Athlete Selection'" [selectionFormGroupObj]="selectionFormGroupObj"
+					[fetchFromServiceMethod]="fetchFromServiceMethod_dynamicFormObj"
+					[referenceProperty]="referenceProperty"></be-selection-form>
+			<mat-form-field>
+				<input matInput formControlName="formInfo" placeholder="Form Information">
+      </mat-form-field>
+      
+		</form>
+		<button mat-raised-button color="warn" (click)="checkForm($event)">Kaydet</button>
+	</div>
+</mat-card>
+<!--
+<h1>Dynamic Selection Modal Example</h1>
+<mat-card style="margin: 25px;">
+	<div>
+				<be-selection-form [parentForm]='dynamicFormObj' [placeHolderText]="'Athlete'"
+					[modalHeaderText]="'Athlete Selection'" [selectionFormGroupObj]="selectionFormGroupObj"
+					[fetchFromServiceMethod]="fetchFromServiceMethod_dynamicFormObj"
+					[referenceProperty]="referenceProperty"></be-selection-form>
+	</div>
+</mat-card>
+-->

@@ -1,0 +1,16 @@
+<h1 mat-dialog-title style="overflow: hidden">
+	{{ modalHeaderText }}
+</h1>
+<mat-dialog-content>
+	<be-selection-search [selectionFormGroupObj]="selectionFormGroupObj"></be-selection-search>
+	<be-selection-list [selectedItems]="selectedItems" (selectionChange)="onSelectionChanged($event)"
+		[selectionFormGroupObj]='selectionFormGroupObj' [formID]="formID"
+		[fetchFromServiceMethod]="fetchFromServiceMethod" [referenceProperty]="referenceProperty"></be-selection-list>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+	<button mat-button type="button" (click)="cancel($event)">Vazgeç</button>
+	<button mat-raised-button color="primary" [disabled]="!selectedItems || !selectedItems.length" (click)="choose()"
+        cdkFocusInitial type="submit">
+        Seç
+    </button>
+</mat-dialog-actions>
